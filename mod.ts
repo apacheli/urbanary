@@ -47,14 +47,14 @@ export const autocompleteExtra = (term: string) =>
 /**
  * Get the definition of a word
  * @param term The term to define
+ * @param page The page
  */
-export const define = (term: string) =>
-  request<WordList>(`define?term=${term}`);
+export const define = (term: string, page = 1) =>
+  request<WordList>(`define?term=${term}&page=${page}`);
 
 /**
  * Look up the definition a word by searching with an ID
  * @param defid The definition's ID
- * @returns 
  */
 export const defineDefid = async (defid: number) =>
   (await request<WordList>(`define?defid=${defid}`)).list[0];
@@ -66,5 +66,7 @@ export const random = () => request<WordList>("random");
 
 /**
  * Get the words of the day
+ * @param page The page
  */
-export const wordsOfTheDay = () => request<WordList>("words_of_the_day");
+export const wordsOfTheDay = (page = 1) =>
+  request<WordList>(`words_of_the_day?page=${page}`);
