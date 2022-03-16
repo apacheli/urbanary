@@ -9,7 +9,7 @@ export interface AutocompleteExtraPreview {
 
 export interface Word {
   definition: string;
-  parmalink: string;
+  permalink: string;
   thumbs_up: number;
   sound_urls: string[];
   author: string;
@@ -31,42 +31,40 @@ export const request = async <T>(path: string): Promise<T> =>
   (await fetch(`${BASE_URL}/${path}`)).json();
 
 /**
- * Get the autocompletions for a term
- * @param term The term to get autocompletions for
+ * Get the autocompletions for a term.
+ * @param term The term to get autocompletions for.
  */
 export const autocomplete = (term: string) =>
   request<string[]>(`autocomplete?term=${term}`);
 
 /**
- * Get the autocompletions for a term along with extra preview definitions
- * @param term The term to get autocompletion extras for
+ * Get the autocompletions for a term along with extra preview definitions.
+ * @param term The term to get autocompletion extras for.
  */
 export const autocompleteExtra = (term: string) =>
   request<AutocompleteExtraData>(`autocomplete-extra?term=${term}`);
 
 /**
- * Get the definition of a word
- * @param term The term to define
- * @param page The page
+ * Get the definition of a word.
+ * @param term The term to define.
+ * @param page The page to start searching from.
  */
 export const define = (term: string, page = 1) =>
   request<WordList>(`define?term=${term}&page=${page}`);
 
 /**
- * Look up the definition a word by searching with an ID
- * @param defid The definition's ID
+ * Look up the definition of a word by searching with it's ID.
+ * @param defid The definition's ID.
  */
 export const defineDefid = async (defid: number) =>
   (await request<WordList>(`define?defid=${defid}`)).list[0];
 
-/**
- * Get a random word
- */
+/** Get a random word */
 export const random = () => request<WordList>("random");
 
 /**
- * Get the words of the day
- * @param page The page
+ * Get the words of the day.
+ * @param page The page to start searching from.
  */
 export const wordsOfTheDay = (page = 1) =>
   request<WordList>(`words_of_the_day?page=${page}`);
