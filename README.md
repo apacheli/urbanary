@@ -19,3 +19,13 @@ if (!term) {
 const definitions = await urbanary.define(term);
 console.log(definitions);
 ```
+
+## Functions
+
+- `autocomplete(term)`
+- `autocompleteExtra(term)`
+- `define(term)`
+- `defineDefid(defid)`
+- `random()`
+- `wordsOfTheDay(page)`
+- `uncacheable(ids)`
