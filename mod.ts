@@ -54,7 +54,7 @@ export const autocomplete = (term: string) =>
   request<string[]>(`/autocomplete?term=${term}`);
 
 /**
- * Get the autocompletions for a term plus extra preview definitions.
+ * Get the autocompletions for a term with extra preview definitions.
  * @param term The term to get autocompletion extras for.
  */
 export const autocompleteExtra = (term: string) =>
